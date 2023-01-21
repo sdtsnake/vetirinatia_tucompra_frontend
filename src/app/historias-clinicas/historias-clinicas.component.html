@@ -1,0 +1,57 @@
+<h1>Historias Clinicas</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Mascota
+            </th>
+            <th>
+                Propietario|
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let historiaClinica of historiasClinicas | async">
+            <td>
+                {{historiaClinica.mascota.nombre}}
+            </td>
+            <td>
+                {{historiaClinica.mascota.usuario.nombre}}
+            </td>
+            <td>
+                {{historiaClinica.fechaCreacion}}
+            </td>
+            <td>
+                <button>Modificar</button>
+                <button>Borrar</button>
+                <button>Detalles</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="aperturaHistoria()">Nueva Historia</button>
+
+<div *ngIf="abrirModalCreacion">
+    <div *ngIf="error">
+        <pre>{{error}}</pre>
+    </div>
+    <div>
+        <label for="mascota">Mascota : </label>
+        <select id="mascota" #mascota class="custom-select mb-3" (change)="changeMascota(mascota.value)"
+            formControlName="mascota">
+            <option value="">Elegir mascota</option>
+            <option *ngFor="let mascota of mascotasSinHistoriaClinica | async" [value]="mascota.id">
+                {{ mascota.nombre }} - {{mascota.usuario.nombre}}
+            </option>
+        </select>
+    </div>
+    <button (click)="crearHistoriaClinica()">Crear Historia</button>
+    <button (click)="cerrarModal()">Cancelar</button>
+</div>
