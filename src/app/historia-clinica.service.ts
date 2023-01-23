@@ -1,32 +1,39 @@
-import { Injectable } from '@angular/core';
-import { CreacionHistoriaClinica, HistoriaClinica, Mascota } from './types/historiaClinica';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {BorrarHistoriaClinica, CreacionHistoriaClinica, HistoriaClinica, Mascota} from './types/historiaClinica';
+import {HttpClient} from '@angular/common/http';
+import * as http from 'http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HistoriaClinicaService {
 
-  constructor(private http:HttpClient) { 
+  // tslint:disable-next-line:no-shadowed-variable
+  constructor(private http: HttpClient) {
 
   }
-  
-  cosnultarHistoriasClinicas(){
-    return this.http.get<{data: HistoriaClinica[]}>('http://localhost:8886/api/veterinaria/historia/clinica');
-  }
-  
-  mascotasSinHistoriaClinica(){
-    return this.http.get<{data: Mascota[]}>('http://localhost:8886/api/veterinaria/mascota/sin/historia/clinica');
+
+  cosnultarHistoriasClinicas(): http {
+    return this.http.get<{ data: HistoriaClinica[] }>('http://localhost:8886/api/veterinaria/historia/clinica');
   }
 
-  crearHistoriaCLinica(id:number){
-    let fechaCreacion = new Date()
-    return this.http.post<CreacionHistoriaClinica>("http://localhost:8886/api/veterinaria/historia/clinica",{
-      id:-1,
-      mascota:{
+  mascotasSinHistoriaClinica(): http {
+    return this.http.get<{ data: Mascota[] }>('http://localhost:8886/api/veterinaria/mascota/sin/historia/clinica');
+  }
+
+  crearHistoriaCLinica(id: number): http {
+    const fechaCreacion = new Date();
+    return this.http.post<CreacionHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica', {
+      id: -1,
+      mascota: {
         id
       },
-      fechaCreacion:fechaCreacion.toISOString().split('T')[0]
-    })
+      fechaCreacion: fechaCreacion.toISOString().split('T')[0]
+    });
+  }
+
+  borrarHistoriaClinica(idHistoriaClinica: number): void{
+    return this.http.delete<BorrarHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica/' + idHistoriaClinica);
+
   }
 }

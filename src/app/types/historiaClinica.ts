@@ -3,7 +3,7 @@ export interface Usuario{
     nombre:string;
     apellido:string;
     documentoid:number;
-} 
+}
 
 export interface Mascota{
     id:number;
@@ -22,5 +22,9 @@ export interface HistoriaClinica{
 export interface CreacionHistoriaClinica{
     error?:string;
     data?:HistoriaClinica;
+}
+
+export interface BorrarHistoriaClinica{
+  error?: string;
 }
 
