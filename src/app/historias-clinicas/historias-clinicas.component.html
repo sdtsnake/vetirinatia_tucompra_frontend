@@ -34,7 +34,7 @@
       <td>
         <button>Modificar</button>
         <button (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
-        <button (click)="aperturaHistoriaClinica(historiaClinica.id)">Detalles</button>
+        <button (click)="aperturaHistoriaClinica(historiaClinica.id,historiaClinica.mascota.id)">Detalles</button>
       </td>
     </tr>
     </tbody>
@@ -42,22 +42,7 @@
 </div>
 
 <div>
-  <button (click)="aperturaHistoria()">Nueva Historia</button>
-</div>
-
-<div *ngIf="abrirModalCreacion">
-  <div>
-    <label for="mascota">Mascota : </label>
-    <select id="mascota" #mascota class="custom-select mb-3" (change)="changeMascota(mascota.value)"
-            formControlName="mascota">
-      <option value="">Elegir mascota</option>
-      <option *ngFor="let mascota of mascotasSinHistoriaClinica | async" [value]="mascota.id">
-        {{ mascota.nombre }} - {{mascota.usuario.nombre}}
-      </option>
-    </select>
-  </div>
-  <button (click)=" crearHistoriaClinica()">Crear Historia</button>
-  <button (click)="cerrarModal()">Cancelar</button>
+  <button (click)="creaHistoriaClinica()">Nueva Historia</button>
 </div>
 
 <div *ngIf="abrirModalBorrado">

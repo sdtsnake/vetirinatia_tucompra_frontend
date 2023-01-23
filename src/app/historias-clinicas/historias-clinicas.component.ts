@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable, } from 'rxjs';
+import {Observable,} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HistoriaClinica} from '../types/historiaClinica';
 import {HistoriaClinicaService} from '../historia-clinica.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-historias-clinicas',
@@ -11,14 +11,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./historias-clinicas.component.css']
 })
 export class HistoriasClinicasComponent implements OnInit {
-
   historiasClinicas = this.servicio.cosnultarHistoriasClinicas().pipe(map(r => r.data));
-
-  mascotasSinHistoriaClinica = this.servicio.mascotasSinHistoriaClinica().pipe(map(r => r.data));
-
   abrirModalCreacion = false;
   abrirModalBorrado = false;
-  idMascota: number | null = null;
+  idMascota?: number = null;
 
   idHistoriaClinica: number | null = null;
 
@@ -39,29 +35,6 @@ export class HistoriasClinicasComponent implements OnInit {
     this.historiasClinicas = this.servicio.cosnultarHistoriasClinicas().pipe(map(r => r.data));
   }
 
-  changeMascota(idMascota: string): void {
-    this.idMascota = parseInt(idMascota);
-    console.log('mascota selecionada ', idMascota);
-
-  }
-
-  crearHistoriaClinica(): void {
-    const respuesta = this.servicio.crearHistoriaCLinica(this.idMascota);
-    respuesta.toPromise().then(
-      r => {
-        this.getHistoriasClinicas();
-        this.cerrarModal();
-        this.idMascota = null;
-      },
-      re => {
-        this.error = re.error?.error;
-
-        console.warn(re);
-
-      }
-    );
-
-  }
   borrarHitoriaClinica(): void {
     const respuesta = this.servicio.borrarHistoriaClinica(this.idHistoriaClinica);
     respuesta.toPromise().then(
@@ -81,6 +54,7 @@ export class HistoriasClinicasComponent implements OnInit {
     this.error = null;
 
   }
+
   cerrarModalBorrado(): void {
     this.abrirModalBorrado = false;
     this.idHistoriaClinica = null;
@@ -92,14 +66,14 @@ export class HistoriasClinicasComponent implements OnInit {
     this.abrirModalBorrado = true;
   }
 
-  aperturaHistoria(): void {
-    this.abrirModalCreacion = true;
+  aperturaHistoriaClinica(idhistoria: number, idmascota: number): void {
+    // from /view1?page=1 to/view2?page=1
+    this.router.navigateByUrl(`/historia?idhistoria=${idhistoria}&idmascota=${idmascota}`);
   }
 
-  aperturaHistoriaClinica(id: number): void {
+  creaHistoriaClinica(): void {
     // from /view1?page=1 to/view2?page=1
-    console.info(id);
-    this.router.navigateByUrl(`/historia?id=${id}`);
+    this.router.navigateByUrl(`/creahistoria`);
   }
 
 }

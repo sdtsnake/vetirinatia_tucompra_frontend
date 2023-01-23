@@ -1,0 +1,61 @@
+import {Component, OnInit} from '@angular/core';
+import {HistoriaClinicaService} from '../historia-clinica.service';
+import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
+
+@Component({
+  selector: 'app-crear-historia-clinica',
+  templateUrl: './crear-historia-clinica.component.html',
+  styleUrls: ['./crear-historia-clinica.component.css']
+})
+export class CrearHistoriaClinicaComponent implements OnInit {
+  idMascota: number | null = null;
+  error?: string;
+  // TODO preguntar a cesar porque tenemos aca la carga del servicio si tenemos un metodo para esto
+  historiasClinicas = this.servicio.cosnultarHistoriasClinicas().pipe(map(r => r.data));
+  mascotasSinHistoriaClinica = this.servicio.mascotasSinHistoriaClinica().pipe(map(r => r.data));
+
+  constructor(
+    private servicio: HistoriaClinicaService,
+    private router: Router
+  ) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  cerrarCreacionModal(): void {
+    this.router.navigateByUrl(`/`);
+    this.error = null;
+  }
+
+  crearHistoriaClinica(): void {
+    const respuesta = this.servicio.crearHistoriaCLinica(this.idMascota);
+    respuesta.toPromise().then(
+      r => {
+        this.getHistoriasClinicas();
+        this.router.navigateByUrl(`/`);
+        this.idMascota = null;
+      },
+      re => {
+        this.error = re.error?.error;
+
+        console.warn(re);
+
+      }
+    );
+
+  }
+
+  cambiarMascota(idMascota: string): void {
+    // tslint:disable-next-line:radix
+    this.idMascota = parseInt(idMascota);
+    console.log('mascota selecionada ', idMascota);
+
+  }
+
+  getHistoriasClinicas(): void {
+    this.historiasClinicas = this.servicio.cosnultarHistoriasClinicas().pipe(map(r => r.data));
+  }
+
+}

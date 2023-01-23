@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
 import { DetalleHistoriaClinicaComponent } from './detalle-historia-clinica/detalle-historia-clinica.component';
 import { ConsultaDetalleHistoriaClinicaComponent } from './consulta-detalle-historia-clinica/consulta-detalle-historia-clinica.component';
+import { CrearHistoriaClinicaComponent } from './crear-historia-clinica/crear-historia-clinica.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ConsultaDetalleHistoriaClinicaComponent } from './consulta-detalle-hist
     HistoriasClinicasComponent,
     PaginaNoEncontradaComponent,
     DetalleHistoriaClinicaComponent,
-    ConsultaDetalleHistoriaClinicaComponent
+    ConsultaDetalleHistoriaClinicaComponent,
+    CrearHistoriaClinicaComponent
   ],
   imports: [
     BrowserModule,
