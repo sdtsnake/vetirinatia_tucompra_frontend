@@ -1,42 +1,50 @@
-<h1>Historias Clinicas</h1>
+<div>
+  <h1>Historias Clinicas</h1>
+</div>
 
-<table>
-  <thead>
-  <tr>
-    <th>
-      Mascota
-    </th>
-    <th>
-      Propietario|
-    </th>
-    <th>
-      Fecha
-    </th>
-    <th>
-      Acciones
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let historiaClinica of historiasClinicas | async">
-    <td>
-      {{historiaClinica.mascota.nombre}}
-    </td>
-    <td>
-      {{historiaClinica.mascota.usuario.nombre}}
-    </td>
-    <td>
-      {{historiaClinica.fechaCreacion}}
-    </td>
-    <td>
-      <button>Modificar</button>
-      <button (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
-      <button (click)="aperturaHistoriaClinica(historiaClinica.id)" >Detalles</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<button (click)="aperturaHistoria()">Nueva Historia</button>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>
+        Mascota
+      </th>
+      <th>
+        Propietario|
+      </th>
+      <th>
+        Fecha
+      </th>
+      <th>
+        Acciones
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let historiaClinica of historiasClinicas | async">
+      <td>
+        {{historiaClinica.mascota.nombre}}
+      </td>
+      <td>
+        {{historiaClinica.mascota.usuario.nombre}}
+      </td>
+      <td>
+        {{historiaClinica.fechaCreacion}}
+      </td>
+      <td>
+        <button>Modificar</button>
+        <button (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
+        <button (click)="aperturaHistoriaClinica(historiaClinica.id)">Detalles</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <button (click)="aperturaHistoria()">Nueva Historia</button>
+</div>
+
 <div *ngIf="abrirModalCreacion">
   <div>
     <label for="mascota">Mascota : </label>

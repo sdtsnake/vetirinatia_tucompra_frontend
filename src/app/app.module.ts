@@ -6,14 +6,19 @@ import { HistoriaClinicaComponent } from './historia-clinica/historia-clinica.co
 import { HistoriasClinicasComponent } from './historias-clinicas/historias-clinicas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component'; // CLI imports
+import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
+import { DetalleHistoriaClinicaComponent } from './detalle-historia-clinica/detalle-historia-clinica.component';
+import { ConsultaDetalleHistoriaClinicaComponent } from './consulta-detalle-historia-clinica/consulta-detalle-historia-clinica.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HistoriaClinicaComponent,
     HistoriasClinicasComponent,
-    PaginaNoEncontradaComponent
+    PaginaNoEncontradaComponent,
+    DetalleHistoriaClinicaComponent,
+    ConsultaDetalleHistoriaClinicaComponent
   ],
   imports: [
     BrowserModule,

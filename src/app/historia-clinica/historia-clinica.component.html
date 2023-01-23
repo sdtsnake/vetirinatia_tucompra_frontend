@@ -1,20 +1,54 @@
-<h1>Historia clinica</h1>
-<label>Fecha de apertura</label>
-<label>2021-01-01</label>
-<p>{{idHistoriaClinica}}</p>
-<h1 *ngIf="error">{{error}}</h1>
-<input>
+<div>
+  <h1>Registros Historia clinica</h1><b>Fecha de apertura : </b><time>2021-01-01</time>
+</div>
 
-<h4>
-    Mascota :
+<div>
+  <p>
+    <b>Mascota : </b>
     <label>Damian</label>
-    Raza :
-    <label>Perro</label>
-    Sexo :
-    <label>Macho</label>
-</h4>
+    <b> Raza : </b>
+    <label> Perro </label>
+    <b>Sexo : </b>
+    <label> Macho </label>
+  </p>
+</div>
 
-<h4>
+<div>
+  <h4>
     Propietario :
-    <label>Oscar Ramos</label>
-</h4>
+    <label>Oscar Ramos Andres Ramos</label>
+  </h4>
+</div>
+
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>
+        <p>Fecha</p>
+      </th>
+      <th>
+        <p>Colaborador</p>
+      </th>
+      <th>
+        <p>Acciones</p>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        2023-01-01
+      </td>
+      <td>
+        Juan Pablo Vazquez
+      </td>
+      <td>
+        <button>Consultar</button>
+        <button>Crear</button>
+        <button>Borrar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
