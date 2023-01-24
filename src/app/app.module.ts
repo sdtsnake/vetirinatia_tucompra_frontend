@@ -11,6 +11,7 @@ import {DetalleHistoriaClinicaComponent} from './detalle-historia-clinica/detall
 import {ConsultaDetalleHistoriaClinicaComponent} from './consulta-detalle-historia-clinica/consulta-detalle-historia-clinica.component';
 import {CrearHistoriaClinicaComponent} from './crear-historia-clinica/crear-historia-clinica.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ModificaDetalleHistoriaClinicaComponent } from './modifica-detalle-historia-clinica/modifica-detalle-historia-clinica.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     PaginaNoEncontradaComponent,
     DetalleHistoriaClinicaComponent,
     ConsultaDetalleHistoriaClinicaComponent,
-    CrearHistoriaClinicaComponent
+    CrearHistoriaClinicaComponent,
+    ModificaDetalleHistoriaClinicaComponent
   ],
   imports: [
     BrowserModule,

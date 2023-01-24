@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {
   BorrarHistoriaClinica,
-  Colaborador,
+  Colaborador, CreacionDetalleHistoriaClinica,
   CreacionHistoriaClinica,
   DetalleHistoriaClinica,
   HistoriaClinica,
@@ -18,12 +18,32 @@ export class HistoriaClinicaService {
   constructor(private http: HttpClient) {
 
   }
-  cosnultarHistoriasClinicas(){
+
+  cosnultarHistoriasClinicas() {
     return this.http.get<{ data: HistoriaClinica[] }>('http://localhost:8886/api/veterinaria/historia/clinica');
   }
+
   mascotasSinHistoriaClinica() {
     return this.http.get<{ data: Mascota[] }>('http://localhost:8886/api/veterinaria/mascota/sin/historia/clinica');
   }
+
+  borrarHistoriaClinica(idHistoriaClinica: number) {
+    return this.http.delete<BorrarHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica/' + idHistoriaClinica);
+
+  }
+
+  consultarDestalleHistoriaClinica(idHistoriaClinica: string) {
+    return this.http.get<{ data: DetalleHistoriaClinica[] }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/detalle/' + idHistoriaClinica);
+  }
+
+  consultaHistoriaClinica(idHistoriaClinica: string) {
+    return this.http.get<{ data: HistoriaClinica }>('http://localhost:8886/api/veterinaria/historia/clinica/id/' + idHistoriaClinica);
+  }
+
+  consultaColaboradores() {
+    return this.http.get<{ data: Colaborador[] }>('http://localhost:8886/api/veterinaria/colaborador/');
+  }
+
   crearHistoriaCLinica(id: number) {
     const fechaCreacion = new Date();
     return this.http.post<CreacionHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica', {
@@ -34,22 +54,17 @@ export class HistoriaClinicaService {
       fechaCreacion: fechaCreacion.toISOString().split('T')[0]
     });
   }
-  borrarHistoriaClinica(idHistoriaClinica: number) {
-    return this.http.delete<BorrarHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica/' + idHistoriaClinica);
 
+  crearDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {
+    console.log(JSON.stringify(detalleHistoriaClinica));
+    return this.http.post<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaClinica);
   }
 
-  consultarDestalleHistoriaClinica(idHistoriaClinica: string){
-    return this.http.get<{ data: DetalleHistoriaClinica[] }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/detalle/' + idHistoriaClinica);
-  }
+  borrarDetalleHistoriaClinica(idHistoriaClinica: number) {
+    return this.http.delete<BorrarHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/' + idHistoriaClinica);
 
-  consultaHistoriaClinica(idHistoriaClinica: string){
-    return this.http.get<{ data: HistoriaClinica }>('http://localhost:8886/api/veterinaria/historia/clinica/id/' + idHistoriaClinica);
   }
-
-  consultaColaboradores(){
-    return this.http.get<{ data: Colaborador[] }>('http://localhost:8886/api/veterinaria/colaborador/');
-  }
-
 
 }
+
+

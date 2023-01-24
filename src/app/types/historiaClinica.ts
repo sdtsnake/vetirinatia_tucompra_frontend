@@ -23,6 +23,10 @@ export interface CreacionHistoriaClinica {
   error?: string;
   data?: HistoriaClinica;
 }
+export interface CreacionDetalleHistoriaClinica {
+  error?: string;
+  data?: DetalleHistoriaClinica;
+}
 
 export interface DetalleHistoriaClinica {
   id: number;

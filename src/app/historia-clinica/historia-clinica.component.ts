@@ -13,9 +13,11 @@ export class HistoriaClinicaComponent implements OnInit {
   detalleHistoriasClinicas?: DetalleHistoriaClinica[] = null;
   historiaClinica?: HistoriaClinica = null;
   idHistoriaClinica?: string = null;
+  idDetalleHistoriaClinica?: number = null;
   error?: string = null;
   Sexo = Sexo;
   indices = new Map();
+  abrirModalBorrado = false;
 
   muestraDetalleAdcional: boolean = false;
 
@@ -91,5 +93,33 @@ export class HistoriaClinicaComponent implements OnInit {
   grabaDetalle() {
     this.router.navigateByUrl(`/detalle?idhistoria=` + this.idHistoriaClinica);
   }
+  borraDetalle(id: number) {
+    this.idDetalleHistoriaClinica = id;
+    this.abrirModalBorrado = true;
+  }
+  borrarHitoriaClinica(){
+    const respuesta = this.servicio.borrarDetalleHistoriaClinica(this.idDetalleHistoriaClinica);
+    respuesta.toPromise().then(
+      r => {
+        this.getHistoriaClinica();
+        this.cerrarModalBorrado();
+      },
+      re => {
+        this.error = re.error?.error;
+        console.warn(re);
+      }
+    );
+  }
+
+  regresarHistora(){
+    this.router.navigateByUrl(`/`);
+  }
+
+  cerrarModalBorrado(): void {
+    this.abrirModalBorrado = false;
+    this.idDetalleHistoriaClinica = null;
+    this.error = null;
+  }
+
 
 }

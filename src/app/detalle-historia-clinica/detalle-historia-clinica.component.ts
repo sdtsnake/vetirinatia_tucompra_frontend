@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HistoriaClinicaService} from '../historia-clinica.service';
-import {HistoriaClinica} from '../types/historiaClinica';
+import {Colaborador, DetalleHistoriaClinica, HistoriaClinica, Mascota} from '../types/historiaClinica';
 import {map} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ConsultaDetalleHistoriaClinicaComponent} from '../consulta-detalle-historia-clinica/consulta-detalle-historia-clinica.component';
 
 @Component({
   selector: 'app-detalle-historia-clinica',
@@ -15,10 +16,10 @@ export class DetalleHistoriaClinicaComponent implements OnInit {
   colaboradores = this.servicio.consultaColaboradores().pipe(map(r => r.data));
   idHistoriaClinica?: string = null;
   idColaborador?: number = null;
-  historiaClinica?: HistoriaClinica = null;
   error?: string = null;
   formularioGrabacion: FormGroup;
-  enviando: boolean = false;
+  enviando = false;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -36,13 +37,14 @@ export class DetalleHistoriaClinicaComponent implements OnInit {
     }),
       this.formularioGrabacion = this.formulario.group(
         {
-          temperatura: ['', Validators.min(1), Validators.max(90)],
-          peso: ['', Validators.min(1), Validators.max(150)],
-          frecuenciaCardica: ['', Validators.min(1), Validators.max(500)],
-          frecuenciaRespiratoria: ['', Validators.min(1), Validators.max(200)],
+          temperatura: ['', Validators.required],
+          peso: ['', Validators.required],
+          frecuenciaCardica: ['', Validators.required],
+          frecuenciaRespiratoria: ['', Validators.required],
           alimentacion: ['', Validators.maxLength(255)],
+          habitad: ['', Validators.maxLength(255)],
           observacion: ['', Validators.maxLength(255)],
-          colaborador: ['', Validators.nullValidator]
+          colaborador: ['', Validators.required]
         }
       );
   }
@@ -61,7 +63,7 @@ export class DetalleHistoriaClinicaComponent implements OnInit {
   }
 
   cerrarCreacionDetalle(): void {
-    this.router.navigateByUrl(`/`);
+    this.router.navigateByUrl(`/historia?idhistoria=` + this.idHistoriaClinica);
   }
 
   enviar() {
@@ -69,12 +71,63 @@ export class DetalleHistoriaClinicaComponent implements OnInit {
     if (this.formularioGrabacion.invalid) {
       return;
     }
+
+    const mascota: Mascota = {
+      id: 0, nombre: '', raza: '', sexo: undefined, usuario: undefined
+
+    };
+
+    const colaborador: Colaborador = {
+      apellido: '',
+      cargo: '',
+      documentoIdentificacion: 0,
+      especialidad: '',
+      id: this.formularioGrabacion.get('colaborador').value,
+      nombre: '',
+      tipoDocumento: ''
+    };
+
+    const historia: HistoriaClinica = {
+      fechaCreacion: '', mascota,
+      // tslint:disable-next-line:radix
+      id: parseInt(this.idHistoriaClinica)
+    };
+
+    // tslint:disable-next-line:prefer-const
+    let fechaCreacion = new Date();
+    // tslint:disable-next-line:no-unused-expression
+    const detalle: DetalleHistoriaClinica = {
+      alimentacion: this.formularioGrabacion.get('alimentacion').value,
+      colaborador,
+      fechaHora: fechaCreacion.toISOString(),
+      frecuenciaCardiaca: this.formularioGrabacion.get('frecuenciaCardica').value,
+      frecuenciaRespiratoria: this.formularioGrabacion.get('frecuenciaRespiratoria').value,
+      habitad: this.formularioGrabacion.get('habitad').value,
+      historiaClinica: historia,
+      id: -1,
+      observacion: this.formularioGrabacion.get('observacion').value,
+      peso: this.formularioGrabacion.get('peso').value,
+      temperatura: this.formularioGrabacion.get('temperatura').value
+    };
+
+    const respuesta = this.servicio.crearDetalleHistoriaClinica(detalle);
+    respuesta.toPromise().then(
+      r => {
+        this.router.navigateByUrl(`/historia?idhistoria=` + this.idHistoriaClinica);
+      },
+      re => {
+        this.error = re.error?.error;
+      }
+    );
+
+
+    if (this.error){
+      alert(this.error);
+    }
   }
 
   get form() {
     return this.formularioGrabacion.controls;
   }
-
-
 
 }
