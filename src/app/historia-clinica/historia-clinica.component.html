@@ -25,7 +25,7 @@
   </div>
 
   <div>
-    <table>
+    <table border="1">
       <thead>
       <tr>
         <th>
@@ -62,7 +62,7 @@
           </td>
           <td>
             <button (click)="muestraDetalle(detalle.id)">{{indices.get(detalle.id)==true?'Ocultar':'Ver'}}</button>
-            <button>Modificar</button>
+            <button (click)="modificaDetalle(detalle.id)">Modificar</button>
             <button (click)="borraDetalle(detalle.id)">Borrar</button>
           </td>
         </tr>

@@ -28,6 +28,10 @@ export interface CreacionDetalleHistoriaClinica {
   data?: DetalleHistoriaClinica;
 }
 
+export interface ActualizaDetalleHistoriaClinica {
+  error?: string;
+  data?: DetalleHistoriaClinica;
+}
 export interface DetalleHistoriaClinica {
   id: number;
   temperatura: number;

@@ -35,9 +35,6 @@ export class HistoriaClinicaComponent implements OnInit {
       this.abrirDetalleHistoriaClinica(params.idhistoria);
       this.getHistoriaClinica();
       this.actulizaDetalleHistoria();
-
-      // tslint:disable-next-line:no-console
-      console.info(params);
     });
   }
 
@@ -47,6 +44,7 @@ export class HistoriaClinicaComponent implements OnInit {
     // tslint:disable-next-line:triple-equals
     if (this.idHistoriaClinica == null || this.idHistoriaClinica.trim() == '') {
       this.error = 'Id de historia con valor no correcto';
+      this.router.navigateByUrl(`/`);
     }
   }
 
@@ -58,7 +56,6 @@ export class HistoriaClinicaComponent implements OnInit {
       },
       re => {
         this.error = re.error?.error;
-        console.warn(re);
       }
     );
   }
@@ -68,8 +65,6 @@ export class HistoriaClinicaComponent implements OnInit {
     respuesta.toPromise().then(
       r => {
         this.detalleHistoriasClinicas = r.data;
-        // tslint:disable-next-line:no-console
-        console.info(this.detalleHistoriasClinicas);
       },
       re => {
         this.error = re.error?.error;
@@ -81,13 +76,14 @@ export class HistoriaClinicaComponent implements OnInit {
     if (this.muestraDetalleAdcional) {
       this.muestraDetalleAdcional = false;
       this.indices.set(id, false);
-      console.info(this.indices.get(id));
-
     } else {
       this.muestraDetalleAdcional = true;
       this.indices.set(id, true);
-      console.info(this.indices.get(id));
     }
+  }
+
+  modificaDetalle(iddetalle: number){
+    this.router.navigateByUrl(`/modificadetalle?idhistoria=` + this.idHistoriaClinica + '&iddetalle=' + iddetalle);
   }
 
   grabaDetalle() {
@@ -103,10 +99,10 @@ export class HistoriaClinicaComponent implements OnInit {
       r => {
         this.getHistoriaClinica();
         this.cerrarModalBorrado();
+        this.actulizaDetalleHistoria();
       },
       re => {
         this.error = re.error?.error;
-        console.warn(re);
       }
     );
   }

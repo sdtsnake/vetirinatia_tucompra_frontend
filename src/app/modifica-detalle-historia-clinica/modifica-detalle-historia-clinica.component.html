@@ -1,1 +1,78 @@
-<p>modifica-detalle-historia-clinica works!</p>
+<div>
+  <h1>Captura detalle de la consulta clinica</h1>
+
+  <h1>{{idHistoriaClinica}} {{idDetalleHistoriaClinica}}</h1>
+</div>
+
+<form (ngSubmit)="enviar()" [formGroup]="formularioGrabacion">
+  <div>
+    <span>Colaborador</span><br>
+    <div>
+      <select formControlName="colaborador" #colaborador class="custom-select mb-3"
+              (change)="cambiarColaborador(colaborador.value)"
+              [ngClass]="{ 'is-invalid':  form.colaborador.errors }">
+
+        <option value="">Elegir Colaborador</option>
+        <option *ngFor="let colaborador of colaboradores | async" [value]="colaborador.id">
+          {{colaborador.nombre}} {{colaborador.apellido}} - {{colaborador.cargo}}
+        </option>
+      </select>
+      <div *ngIf="form.colaborador.errors" class="invalid-feedback">
+        <div *ngIf="form.colaborador.errors.required">Debe seleccionar un colaborador</div>
+      </div>
+    </div>
+
+    <div>
+      <b>Temperatura</b><br>
+      <input type="number" formControlName="temperatura" [ngClass]="{ 'is-invalid':  form.temperatura.errors }">
+    </div>
+    <div *ngIf="form.temperatura.errors" class="invalid-feedback">
+      <div *ngIf="form.temperatura.errors.required">Debe regitrar la temeperatura</div>
+    </div>
+
+
+    <div>
+      <b>Peso</b><br>
+      <input type="number" formControlName="peso" [ngClass]="{ 'is-invalid':  form.peso.errors }">
+      <div *ngIf="form.peso.errors" class="invalid-feedback">
+        <div *ngIf="form.peso.errors.required">Debe regitrar el peso</div>
+      </div>
+    </div>
+    <div>
+      <b>Frecuencia cardiaca</b><br>
+      <input type="number" formControlName="frecuenciaCardica"
+             [ngClass]="{ 'is-invalid':  form.frecuenciaCardica.errors }">
+      <div *ngIf="form.frecuenciaCardica.errors" class="invalid-feedback">
+        <div *ngIf="form.frecuenciaCardica.errors.required">Debe regitrar la frcuencia cardica</div>
+      </div>
+    </div>
+    <div>
+      <b>Frecuencia respiratoria</b><br>
+      <input type="number" formControlName="frecuenciaRespiratoria"
+             [ngClass]="{ 'is-invalid':  form.frecuenciaRespiratoria.errors }">
+      <div *ngIf="form.frecuenciaRespiratoria.errors" class="invalid-feedback">
+        <div *ngIf="form.frecuenciaRespiratoria.errors.required">Debe regitrar frecuencia respiratoria</div>
+      </div>
+    </div>
+    <p>
+      <b>Alimentacion</b><br>
+      <textarea formControlName="alimentacion" [ngClass]="{ 'is-invalid':  form.alimentacion.errors }"></textarea>
+    </p>
+    <p>
+      <b>Habitad</b><br>
+      <textarea formControlName="habitad" [ngClass]="{ 'is-invalid':  form.habitad.errors }"></textarea>
+
+    <p>
+      <b>Observaciones</b><br>
+      <textarea formControlName="observacion" [ngClass]="{ 'is-invalid':  form.observacion.errors }"></textarea>
+    </p>
+
+
+  </div>
+  <button [disabled]="formularioGrabacion.invalid">Guardar</button>
+</form>
+<div>
+
+  <button (click)="cerrarCreacionDetalle()">Cancelar</button>
+</div>
+

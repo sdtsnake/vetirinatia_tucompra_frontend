@@ -4,7 +4,6 @@ import {HistoriaClinicaService} from '../historia-clinica.service';
 import {Colaborador, DetalleHistoriaClinica, HistoriaClinica, Mascota} from '../types/historiaClinica';
 import {map} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ConsultaDetalleHistoriaClinicaComponent} from '../consulta-detalle-historia-clinica/consulta-detalle-historia-clinica.component';
 
 @Component({
   selector: 'app-detalle-historia-clinica',
@@ -54,6 +53,7 @@ export class DetalleHistoriaClinicaComponent implements OnInit {
     // tslint:disable-next-line:triple-equals
     if (this.idHistoriaClinica == null || this.idHistoriaClinica.trim() == '') {
       this.error = 'Id de historia con valor no correcto';
+      this.router.navigateByUrl(`/`);
     }
   }
 

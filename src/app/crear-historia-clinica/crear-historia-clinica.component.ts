@@ -31,13 +31,10 @@ export class CrearHistoriaClinicaComponent implements OnInit {
     const respuesta = this.servicio.crearHistoriaCLinica(this.idMascota);
     respuesta.toPromise().then(
       r => {
-
-        this.router.navigateByUrl(`/`);
         this.idMascota = null;
       },
       re => {
         this.error = re.error?.error;
-
         console.warn(re);
 
       }

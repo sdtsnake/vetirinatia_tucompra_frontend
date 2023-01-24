@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {
   BorrarHistoriaClinica,
-  Colaborador, CreacionDetalleHistoriaClinica,
+  Colaborador,
+  CreacionDetalleHistoriaClinica,
   CreacionHistoriaClinica,
   DetalleHistoriaClinica,
   HistoriaClinica,
@@ -33,7 +34,13 @@ export class HistoriaClinicaService {
   }
 
   consultarDestalleHistoriaClinica(idHistoriaClinica: string) {
-    return this.http.get<{ data: DetalleHistoriaClinica[] }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/detalle/' + idHistoriaClinica);
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<{ data: DetalleHistoriaClinica[] }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/idhistoria/' + idHistoriaClinica);
+  }
+  consultarIdDestalleHistoriaClinica(idDetalleHistoriaClinica: string) {
+    console.log("id del detalle" + idDetalleHistoriaClinica);
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<{ data: DetalleHistoriaClinica }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/id/' + idDetalleHistoriaClinica);
   }
 
   consultaHistoriaClinica(idHistoriaClinica: string) {
@@ -58,6 +65,11 @@ export class HistoriaClinicaService {
   crearDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {
     console.log(JSON.stringify(detalleHistoriaClinica));
     return this.http.post<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaClinica);
+  }
+
+  actualizaDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {
+    console.log(JSON.stringify(detalleHistoriaClinica));
+    return this.http.put<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaClinica);
   }
 
   borrarDetalleHistoriaClinica(idHistoriaClinica: number) {
