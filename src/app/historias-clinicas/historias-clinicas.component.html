@@ -34,7 +34,7 @@
       <td>
         <button>Modificar</button>
         <button (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
-        <button (click)="aperturaHistoriaClinica(historiaClinica.id,historiaClinica.mascota.id)">Detalles</button>
+        <button (click)="aperturaHistoriaClinica(historiaClinica.id)">Detalles</button>
       </td>
     </tr>
     </tbody>
@@ -42,7 +42,7 @@
 </div>
 
 <div>
-  <button (click)="creaHistoriaClinica()">Nueva Historia</button>
+  <button (click)="creaHistoriaClinica()" >Nueva Historia</button>
 </div>
 
 <div *ngIf="abrirModalBorrado">

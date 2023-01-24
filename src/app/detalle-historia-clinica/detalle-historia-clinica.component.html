@@ -1,58 +1,54 @@
 <div>
   <h1>Captura detalle de la consulta clinica</h1>
+
+  <h1>{{idHistoriaClinica}}</h1>
 </div>
 
-<div>
-  <p>
-    <b>Mascota</b><br>
-    <select>
-      <option>Elegir mascota</option>
-      <option>Mascota 1</option>
-    </select>
+<form (ngSubmit)="enviar()" [formGroup]="formularioGrabacion">
+  <div>
+    <span>Colaborador</span><br>
+   <!-- <select formControlName="colaborador" #colaborador class="custom-select mb-3"
+            (change)="cambiarColaborador(colaborador.value)"
+            [ngClass]="{ 'is-invalid':  form.colaborador.errors }">
 
-  </p>
-</div>
-
-<div>
-  <p>
-    <b>Colaborador</b><br>
-    <select>
       <option>Elegir Colaborador</option>
-      <option>Colaborardor 1</option>
-    </select>
-  </p>
-</div>
+      <option *ngFor="let colaborador of colaboradores | async" [value]="colaborador.id">
+        {{colaborador.nombre}} {{colaborador.apellido}} - {{colaborador.cargo}}
+      </option>
+    </select>  !-->
+  </div>
 
+
+    <p>
+      <b>Temperatura</b><br>
+      <input type="number" formControlName="temperatura">
+<!--    </p>
+    <b>Peso</b><br>
+    <input type="number" formControlName="peso" [ngClass]="{ 'is-invalid':  form.peso.errors }">
+    <p>
+      <b>Frecuencia cardiaca</b><br>
+      <input type="number" formControlName="frecuencia_cardiaca" [ngClass]="{ 'is-invalid':  form.frecuencia_cardiaca.errors }">
+    </p>
+    <p>
+      <b>Frecuencia respiratoria</b><br>
+      <input type="number" formControlName="frecuencia_respiratoria" [ngClass]="{ 'is-invalid':  form.frecuencia_respiratoria.errors }">
+    </p>
+    <p>
+      <b>Alimentacion</b><br>
+      <textarea formControlName="alimentacion" [ngClass]="{ 'is-invalid':  form.alimentacion.errors }"></textarea>
+    </p>
+    <p>
+      <b>Habitad</b><br>
+      <textarea formControlName="habitad" [ngClass]="{ 'is-invalid':  form.habitad.errors }"></textarea>
+
+    <p>
+      <b>Observaciones</b><br>
+      <textarea formControlName="observaciones" [ngClass]="{ 'is-invalid':  form.observaciones.errors }"></textarea>
+    </p>
+  </div>
+  <button [disabled]="formularioGrabacion.invalid">Guardar</button> !-->
+</form>
 <div>
-  <p>
-    <b>Temperatura</b><br>
-    <input id="temeperatura">
-  </p>
-  <b>Peso</b><br>
-  <input id="peso">
-  <p>
-    <b>Frecuencia cardiaca</b><br>
-    <input id="frecuencia_cardiaca">
-  </p>
-  <p>
-    <b>Frecuencia respiratoria</b><br>
-    <input id="frecuencia_respiratoria">
-  </p>
-  <p>
-    <b>Alimentacion</b><br>
-    <textarea>Informacion de la alimentacion</textarea>
-  </p>
-  <p>
-    <b>Habitad</b><br>
-    <textarea>Informacion del habitad</textarea>
 
-  <p>
-    <b>Observaciones</b><br>
-    <textarea>Observaciones del chequeo y recomendaciones generales</textarea>
-  </p>
-</div>
-
-<div>
-  <button>Guardar</button>
-  <button>Cancelar</button>
+  <button (click)="cerrarCreacionDetalle()">Cancelar</button>
 </div>

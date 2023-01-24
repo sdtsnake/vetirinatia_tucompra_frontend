@@ -1,5 +1,12 @@
 import {Injectable} from '@angular/core';
-import {BorrarHistoriaClinica, CreacionHistoriaClinica, DetalleHistoriaClinica, HistoriaClinica, Mascota} from './types/historiaClinica';
+import {
+  BorrarHistoriaClinica,
+  Colaborador,
+  CreacionHistoriaClinica,
+  DetalleHistoriaClinica,
+  HistoriaClinica,
+  Mascota
+} from './types/historiaClinica';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -31,12 +38,17 @@ export class HistoriaClinicaService {
     return this.http.delete<BorrarHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica/' + idHistoriaClinica);
 
   }
-  consultarDestalleHistoriaClinica(){
-    return this.http.get<{ data: DetalleHistoriaClinica[] }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica');
+
+  consultarDestalleHistoriaClinica(idHistoriaClinica: string){
+    return this.http.get<{ data: DetalleHistoriaClinica[] }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/detalle/' + idHistoriaClinica);
   }
 
-  cosnultarMascotaHistoriaClinica(idMascota: number){
-    return this.http.get<{ data: HistoriaClinica[] }>('http://localhost:8886/api/veterinaria/mascota/id/' + idMascota);
+  consultaHistoriaClinica(idHistoriaClinica: string){
+    return this.http.get<{ data: HistoriaClinica }>('http://localhost:8886/api/veterinaria/historia/clinica/id/' + idHistoriaClinica);
+  }
+
+  consultaColaboradores(){
+    return this.http.get<{ data: Colaborador[] }>('http://localhost:8886/api/veterinaria/colaborador/');
   }
 
 

@@ -1,59 +1,32 @@
 <div>
-  <h1>Consulta detalle de la consulta clinica</h1>
-</div>
-
-<div>
-  <p>
-    <b>Mascota </b>
-    <input id="mascota" readonly value="Damian">
-    <b>Raza </b>
-    <input id="raza" readonly value="Criollo">
-    <b>Sexo</b>
-    <input id="sexo" readonly value="Masculino">
-  </p>
-</div>
-
-<div>
-  <p>
-    <b>Colaborador </b>
-    <input id="colaborador" readonly value="Juan Pablo Vasquez">
-    <b>Cargo Colaborador </b>
-    <input id="cargo" readonly value="Veterinario">
-    <b>Especialidad </b>
-    <input id="especialidad" readonly value="Traumatolog">
-  </p>
+  <h1>Datos adicionales</h1>
 </div>
 
 <div>
   <p>
     <b>Temperatura</b><br>
-    <input id="temeperatura" type="number" readonly value="35">
+    <input id="temeperatura" type="number" readonly value="{{detalle.temperatura}}">
   </p>
   <b>Peso</b><br>
-  <input id="peso" type="number" readonly value="8">
+  <input id="peso" type="number" readonly value="{{detalle.peso}}">
   <p>
     <b>Frecuencia cardiaca</b><br>
-    <input id="frecuencia_cardiaca" type="number" readonly value="110">
+    <input id="frecuencia_cardiaca" type="number" readonly value="{{detalle.frecuenciaCardiaca}}">
   </p>
   <p>
     <b>Frecuencia respiratoria</b><br>
-    <input id="frecuencia_respiratoria" type="number" readonly value="95">
+    <input id="frecuencia_respiratoria" type="number" readonly value="{{detalle.frecuenciaRespiratoria}}">
   </p>
   <p>
     <b>Alimentacion</b><br>
-    <textarea id="alimentacion" readonly>Informacion de la alimentacion</textarea>
+    <textarea id="alimentacion" readonly>{{detalle.alimentacion}}</textarea>
   </p>
   <p>
     <b>Habitad</b><br>
-    <textarea id="habitad" readonly>Informacion del habitad</textarea>
+    <textarea id="habitad" readonly>{{detalle.habitad}}</textarea>
 
   <p>
     <b>Observaciones</b><br>
-    <textarea id="observaciones" readonly>Observaciones del chequeo y recomendaciones generales</textarea>
+    <textarea id="observaciones" readonly>{{detalle.observacion}}</textarea>
   </p>
-</div>
-
-<div>
-  <button>Guardar</button>
-  <button>Cancelar</button>
 </div>

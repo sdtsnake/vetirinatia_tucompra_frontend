@@ -11,8 +11,6 @@ import {map} from 'rxjs/operators';
 export class CrearHistoriaClinicaComponent implements OnInit {
   idMascota: number | null = null;
   error?: string;
-  // TODO preguntar a cesar porque tenemos aca la carga del servicio si tenemos un metodo para esto
-  historiasClinicas = this.servicio.cosnultarHistoriasClinicas().pipe(map(r => r.data));
   mascotasSinHistoriaClinica = this.servicio.mascotasSinHistoriaClinica().pipe(map(r => r.data));
 
   constructor(
@@ -33,7 +31,7 @@ export class CrearHistoriaClinicaComponent implements OnInit {
     const respuesta = this.servicio.crearHistoriaCLinica(this.idMascota);
     respuesta.toPromise().then(
       r => {
-        this.getHistoriasClinicas();
+
         this.router.navigateByUrl(`/`);
         this.idMascota = null;
       },
@@ -53,9 +51,4 @@ export class CrearHistoriaClinicaComponent implements OnInit {
     console.log('mascota selecionada ', idMascota);
 
   }
-
-  getHistoriasClinicas(): void {
-    this.historiasClinicas = this.servicio.cosnultarHistoriasClinicas().pipe(map(r => r.data));
-  }
-
 }

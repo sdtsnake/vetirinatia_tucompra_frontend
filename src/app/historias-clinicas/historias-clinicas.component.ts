@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable,} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {HistoriaClinica} from '../types/historiaClinica';
 import {HistoriaClinicaService} from '../historia-clinica.service';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-historias-clinicas',
@@ -12,9 +10,8 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class HistoriasClinicasComponent implements OnInit {
   historiasClinicas = this.servicio.cosnultarHistoriasClinicas().pipe(map(r => r.data));
-  abrirModalCreacion = false;
+
   abrirModalBorrado = false;
-  idMascota?: number = null;
 
   idHistoriaClinica: number | null = null;
 
@@ -49,12 +46,6 @@ export class HistoriasClinicasComponent implements OnInit {
     );
   }
 
-  cerrarModal(): void {
-    this.abrirModalCreacion = false;
-    this.error = null;
-
-  }
-
   cerrarModalBorrado(): void {
     this.abrirModalBorrado = false;
     this.idHistoriaClinica = null;
@@ -66,14 +57,14 @@ export class HistoriasClinicasComponent implements OnInit {
     this.abrirModalBorrado = true;
   }
 
-  aperturaHistoriaClinica(idhistoria: number, idmascota: number): void {
+  aperturaHistoriaClinica(idhistoria: number): void {
     // from /view1?page=1 to/view2?page=1
-    this.router.navigateByUrl(`/historia?idhistoria=${idhistoria}&idmascota=${idmascota}`);
+    this.router.navigateByUrl(`/historia?idhistoria=${idhistoria}`);
   }
 
   creaHistoriaClinica(): void {
     // from /view1?page=1 to/view2?page=1
-    this.router.navigateByUrl(`/creahistoria`);
+    this.router.navigateByUrl(`/creahistoria=$` + this.idHistoriaClinica);
   }
 
 }

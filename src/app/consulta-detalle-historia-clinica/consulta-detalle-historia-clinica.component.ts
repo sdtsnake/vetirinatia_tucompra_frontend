@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {DetalleHistoriaClinica, Sexo} from '../types/historiaClinica';
 
 @Component({
   selector: 'app-consulta-detalle-historia-clinica',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consulta-detalle-historia-clinica.component.css']
 })
 export class ConsultaDetalleHistoriaClinicaComponent implements OnInit {
-
+  @Input('detalle')
+  detalle?: DetalleHistoriaClinica = null;
+  Sexo = Sexo;
   constructor() { }
 
   ngOnInit(): void {

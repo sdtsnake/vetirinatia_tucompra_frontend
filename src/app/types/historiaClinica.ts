@@ -10,13 +10,13 @@ export interface Mascota {
   nombre: string;
   raza: string;
   usuario: Usuario;
-  sexo: number;
+  sexo: Sexo;
 }
 
 export interface HistoriaClinica {
   id: number;
   mascota: Mascota;
-  fechaCreacion: Date;
+  fechaCreacion: string;
 }
 
 export interface CreacionHistoriaClinica {
@@ -30,7 +30,7 @@ export interface DetalleHistoriaClinica {
   peso: number;
   frecuenciaCardiaca: number;
   frecuenciaRespiratoria: number;
-  fehaHora: Date;
+  fechaHora: string;
   alimentacion: string;
   habitad: string;
   observacion: string;
@@ -50,5 +50,10 @@ export interface Colaborador {
 
 export interface BorrarHistoriaClinica {
   error?: string;
+}
+
+export enum Sexo {
+  Masculino,
+  Femenino
 }
 

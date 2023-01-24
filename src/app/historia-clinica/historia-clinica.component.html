@@ -3,57 +3,78 @@
   <time>2021-01-01</time>
 </div>
 <h1>
-  {{idMacota}}
   {{idHistoriaClinica}}
 </h1>
+<div *ngIf="historiaClinica">
+  <div>
+    <span>
+      <b>Mascota : </b>
+      <span>{{historiaClinica.mascota.nombre}}</span>
+      <b> Raza : </b>
+      <span>{{historiaClinica.mascota.raza}}</span>
+      <b> Sexo : </b>
+      <span>{{Sexo[historiaClinica.mascota.sexo]}}</span>
+    </span>
+  </div>
 
-<div>
-  <p>
-    <b>Mascota : </b>
-    <label>Damian</label>
-    <b> Raza : </b>
-    <label> Perro </label>
-    <b>Sexo : </b>
-    <label> Macho </label>
-  </p>
-</div>
+  <div>
+    <h4>
+      Propietario :
+      <span>{{historiaClinica.mascota.usuario.nombre}}  {{historiaClinica.mascota.usuario.apellido}}</span>
+    </h4>
+  </div>
 
-<div>
-  <h4>
-    Propietario :
-    <label>Oscar Ramos Andres Ramos</label>
-  </h4>
-</div>
-
-<div>
-  <table>
-    <thead>
-    <tr>
-      <th>
-        <p>Fecha</p>
-      </th>
-      <th>
-        <p>Colaborador</p>
-      </th>
-      <th>
-        <p>Acciones</p>
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        2023-01-01
-      </td>
-      <td>
-        Juan Pablo Vazquez
-      </td>
-      <td>
-        <button>Consultar</button>
-        <button>Crear</button>
-        <button>Borrar</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>
+          <p>Fecha</p>
+        </th>
+        <th>
+          <p>Colaborador</p>
+        </th>
+        <th>
+          <p>Cargo</p>
+        </th>
+        <th>
+          <p>Especialidad</p>
+        </th>
+        <th>
+          <p>Acciones</p>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let detalle of detalleHistoriasClinicas">
+        <tr>
+          <td>
+            {{detalle.fechaHora}}
+          </td>
+          <td>
+            {{detalle.colaborador.nombre}} {{detalle.colaborador.apellido}}
+          </td>
+          <td>
+            {{detalle.colaborador.cargo}}
+          </td>
+          <td>
+            {{detalle.colaborador.especialidad}}
+          </td>
+          <td>
+            <button (click)="muestraDetalle(detalle.id)">{{indices.get(detalle.id)==true?'Ocultar':'Ver'}}</button>
+            <button>Modificar</button>
+            <button>Borrar</button>
+          </td>
+        </tr>
+        <tr *ngIf="indices.get(detalle.id)">
+          <td colspan="5">
+            <app-consulta-detalle-historia-clinica [detalle]="detalle"></app-consulta-detalle-historia-clinica>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+    <button (click)="grabaDetalle()">Crear Registro</button>
+    <button>Salir</button>
+  </div>
 </div>
