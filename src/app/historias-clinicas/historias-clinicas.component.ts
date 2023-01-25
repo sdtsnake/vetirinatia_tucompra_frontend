@@ -41,7 +41,8 @@ export class HistoriasClinicasComponent implements OnInit {
       },
       re => {
         this.error = re.error?.error;
-        console.warn(re);
+        alert(this.error);
+        this.recargaPagina();
       }
     );
   }
@@ -65,6 +66,10 @@ export class HistoriasClinicasComponent implements OnInit {
   creaHistoriaClinica(): void {
     // from /view1?page=1 to/view2?page=1
     this.router.navigateByUrl(`/creahistoria=$` + this.idHistoriaClinica);
+  }
+
+  recargaPagina() {
+    this.router.navigateByUrl(`/**`);
   }
 
 }

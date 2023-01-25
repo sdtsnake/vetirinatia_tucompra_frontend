@@ -32,7 +32,6 @@
         {{historiaClinica.fechaCreacion}}
       </td>
       <td>
-        <button class="btn btn-primary">Modificar</button>
         <button class="btn btn-info" (click)="aperturaHistoriaClinica(historiaClinica.id)">Detalles</button>
         <button class="btn btn-danger" (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
       </td>
@@ -51,8 +50,4 @@
   <button class="btn btn-light" (click)="cerrarModalBorrado()">Cancelar</button>
 </div>
 
-<div *ngIf="error">
-  <pre>{{error}}</pre>
-</div>
 
-<app-pie-pagina></app-pie-pagina>
