@@ -37,22 +37,33 @@ export class ModificaDetalleHistoriaClinicaComponent implements OnInit {
       this.cargaDetalle();
       // tslint:disable-next-line:no-console
       console.info(params);
-    }),
-      this.colaboradornombre = this.detalleHistoriasClinicas.colaborador.apellido + this.detalleHistoriasClinicas.colaborador.nombre;
-
+    });
     this.formularioGrabacion = this.formulario.group(
-        {
-          temperatura: [this.detalleHistoriasClinicas.temperatura.toString, Validators.required],
-          peso: [this.detalleHistoriasClinicas.peso.toString, Validators.required],
-          frecuenciaCardica: [this.detalleHistoriasClinicas.frecuenciaCardiaca.toString, Validators.required],
-          frecuenciaRespiratoria: [this.detalleHistoriasClinicas.frecuenciaRespiratoria.toString, Validators.required],
-          alimentacion: [this.detalleHistoriasClinicas.alimentacion.toString, Validators.maxLength(255)],
-          habitad: [this.detalleHistoriasClinicas.observacion.toString, Validators.maxLength(255)],
-          observacion: [this.detalleHistoriasClinicas.observacion.toString, Validators.maxLength(255)],
-          // tslint:disable-next-line:max-line-length
-          colaborador: ['oscar ramos', Validators.required]
-        }
-      );
+      {
+        temperatura: ['', Validators.required],
+        peso: ['', Validators.required],
+        frecuenciaCardica: ['', Validators.required],
+        frecuenciaRespiratoria: ['', Validators.required],
+        alimentacion: ['', Validators.maxLength(255)],
+        habitad: ['', Validators.maxLength(255)],
+        observacion: ['', Validators.maxLength(255)],
+        // tslint:disable-next-line:max-line-length
+        colaborador: ['', Validators.required]
+      }
+    );
+  }
+
+  cargaFormulario() {
+    this.formularioGrabacion.setValue({
+      temperatura: this.detalleHistoriasClinicas.temperatura,
+      peso: this.detalleHistoriasClinicas.peso,
+      frecuenciaCardica: this.detalleHistoriasClinicas.frecuenciaCardiaca,
+      frecuenciaRespiratoria: this.detalleHistoriasClinicas.frecuenciaRespiratoria,
+      alimentacion: this.detalleHistoriasClinicas.alimentacion,
+      habitad: this.detalleHistoriasClinicas.habitad,
+      observacion: this.detalleHistoriasClinicas.observacion,
+      colaborador: this.detalleHistoriasClinicas.colaborador.id
+    });
   }
 
   abrirDetalleHistoriaClinica(idHistoriaClinica?: string, iddetalle?: string) {
@@ -74,12 +85,14 @@ export class ModificaDetalleHistoriaClinicaComponent implements OnInit {
     respuesta.toPromise().then(
       r => {
         this.detalleHistoriasClinicas = r.data;
+        this.cargaFormulario();
+        console.log('respuesta del servicio data ', r);
       },
       re => {
         this.error = re.error?.error;
+        console.log('respuesta del servicio con error');
       }
     );
-    console.log('respuesta del servicio ');
   }
 
   cambiarColaborador(idColaborador: string): void {

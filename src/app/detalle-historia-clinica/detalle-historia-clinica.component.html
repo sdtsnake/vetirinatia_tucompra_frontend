@@ -22,9 +22,10 @@
 
     <div>
       <b>Temperatura</b><br>
-      <input class="form-control" type="number" formControlName="temperatura" [ngClass]="{ 'is-invalid':  form.temperatura.errors }">
+      <input class="form-control" type="number" formControlName="temperatura"
+             [ngClass]="{ 'is-invalid':  form.temperatura.errors }">
       <div *ngIf="form.temperatura.errors" class="invalid-feedback">
-        <div *ngIf="form.temperatura.errors.required">Debe regitrar la temeperatura</div>
+        <div *ngIf="form.temperatura.errors.required">Debe regitrar la temperatura</div>
       </div>
     </div>
 
@@ -42,7 +43,7 @@
       <input class="form-control" type="number" formControlName="frecuenciaCardica"
              [ngClass]="{ 'is-invalid':  form.frecuenciaCardica.errors }">
       <div *ngIf="form.frecuenciaCardica.errors" class="invalid-feedback">
-        <div *ngIf="form.frecuenciaCardica.errors.required">Debe regitrar la frcuencia cardica</div>
+        <div *ngIf="form.frecuenciaCardica.errors.required">Debe registrar la frecuencia cardica</div>
       </div>
     </div>
 
@@ -51,21 +52,24 @@
       <input class="form-control" type="number" formControlName="frecuenciaRespiratoria"
              [ngClass]="{ 'is-invalid':  form.frecuenciaRespiratoria.errors }">
       <div *ngIf="form.frecuenciaRespiratoria.errors" class="invalid-feedback">
-        <div *ngIf="form.frecuenciaRespiratoria.errors.required">Debe regitrar frecuencia respiratoria</div>
+        <div *ngIf="form.frecuenciaRespiratoria.errors.required">Debe registrar frecuencia respiratoria</div>
       </div>
     </div>
 
     <p>
       <b>Alimentacion</b><br>
-      <textarea class="form-control" formControlName="alimentacion" [ngClass]="{ 'is-invalid':  form.alimentacion.errors }"></textarea>
+      <textarea class="form-control" formControlName="alimentacion"
+                [ngClass]="{ 'is-invalid':  form.alimentacion.errors }"></textarea>
     </p>
     <p>
       <b>Habitad</b><br>
-      <textarea class="form-control" formControlName="habitad" [ngClass]="{ 'is-invalid':  form.habitad.errors }"></textarea>
+      <textarea class="form-control" formControlName="habitad"
+                [ngClass]="{ 'is-invalid':  form.habitad.errors }"></textarea>
 
     <p>
       <b>Observaciones</b><br>
-      <textarea class="form-control" formControlName="observacion" [ngClass]="{ 'is-invalid':  form.observacion.errors }"></textarea>
+      <textarea class="form-control" formControlName="observacion"
+                [ngClass]="{ 'is-invalid':  form.observacion.errors }"></textarea>
     </p>
 
 
