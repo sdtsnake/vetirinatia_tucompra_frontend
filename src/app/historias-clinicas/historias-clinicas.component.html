@@ -1,7 +1,10 @@
+<html>
+<head>
+</head>
+<body>
 <div>
   <h1>Historias Clinicas</h1>
 </div>
-
 <div>
   <table class="table table-striped">
     <thead>
@@ -32,7 +35,6 @@
         {{historiaClinica.fechaCreacion}}
       </td>
       <td>
-        <button class="btn btn-primary">Modificar</button>
         <button class="btn btn-info" (click)="aperturaHistoriaClinica(historiaClinica.id)">Detalles</button>
         <button class="btn btn-danger" (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
       </td>
@@ -42,7 +44,7 @@
 </div>
 
 <div class="d-grid gap-2">
-  <button class="btn btn-primary" (click)="creaHistoriaClinica()" >Nueva Historia</button>
+  <button class="btn btn-primary" (click)="creaHistoriaClinica()">Nueva Historia</button>
 </div>
 
 <div class="container" *ngIf="abrirModalBorrado">
@@ -50,9 +52,5 @@
   <button class="btn btn-danger" (click)="borrarHitoriaClinica()">Aceptar</button>
   <button class="btn btn-light" (click)="cerrarModalBorrado()">Cancelar</button>
 </div>
-
-<div *ngIf="error">
-  <pre>{{error}}</pre>
-</div>
-
-<app-pie-pagina></app-pie-pagina>
+</body>
+</html>

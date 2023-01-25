@@ -46,6 +46,20 @@ export interface DetalleHistoriaClinica {
   colaborador: Colaborador;
 }
 
+export interface DetalleHistoriaPostClinica {
+  id: number;
+  temperatura: number;
+  peso: number;
+  frecuenciaCardiaca: number;
+  frecuenciaRespiratoria: number;
+  fechaHora: string;
+  alimentacion: string;
+  habitad: string;
+  observacion: string;
+  idHistoriaClinica: number;
+  idColaborador: number;
+}
+
 export interface Colaborador {
   id: string;
   nombre: string;

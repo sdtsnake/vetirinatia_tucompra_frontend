@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
+import {environment} from '../environments/environment';
 import {
   BorrarHistoriaClinica,
   Colaborador,
   CreacionDetalleHistoriaClinica,
   CreacionHistoriaClinica,
-  DetalleHistoriaClinica,
+  DetalleHistoriaClinica, DetalleHistoriaPostClinica,
   HistoriaClinica,
   Mascota
 } from './types/historiaClinica';
@@ -21,59 +22,56 @@ export class HistoriaClinicaService {
   }
 
   cosnultarHistoriasClinicas() {
-    return this.http.get<{ data: HistoriaClinica[] }>('http://localhost:8886/api/veterinaria/historia/clinica');
+    return this.http.get<{ data: HistoriaClinica[] }>(`${environment.apiurl}/veterinaria/historia/clinica`);
   }
 
   mascotasSinHistoriaClinica() {
-    return this.http.get<{ data: Mascota[] }>('http://localhost:8886/api/veterinaria/mascota/sin/historia/clinica');
+    return this.http.get<{ data: Mascota[] }>(`${environment.apiurl}/veterinaria/mascota/sin/historia/clinica`);
   }
 
   borrarHistoriaClinica(idHistoriaClinica: number) {
-    return this.http.delete<BorrarHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica/' + idHistoriaClinica);
+    return this.http.delete<BorrarHistoriaClinica>(`${environment.apiurl}/veterinaria/historia/clinica/` + idHistoriaClinica);
 
   }
 
   consultarDestalleHistoriaClinica(idHistoriaClinica: string) {
     // tslint:disable-next-line:max-line-length
-    return this.http.get<{ data: DetalleHistoriaClinica[] }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/idhistoria/' + idHistoriaClinica);
+    return this.http.get<{ data: DetalleHistoriaClinica[] }>(`${environment.apiurl}/veterinaria/detalle/historia/clinica/idhistoria/` + idHistoriaClinica);
   }
   consultarIdDestalleHistoriaClinica(idDetalleHistoriaClinica: string) {
     console.log("id del detalle" + idDetalleHistoriaClinica);
     // tslint:disable-next-line:max-line-length
-    return this.http.get<{ data: DetalleHistoriaClinica }>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/id/' + idDetalleHistoriaClinica);
+    return this.http.get<{ data: DetalleHistoriaClinica }>(`${environment.apiurl}/veterinaria/detalle/historia/clinica/id/` + idDetalleHistoriaClinica);
   }
 
   consultaHistoriaClinica(idHistoriaClinica: string) {
-    return this.http.get<{ data: HistoriaClinica }>('http://localhost:8886/api/veterinaria/historia/clinica/id/' + idHistoriaClinica);
+    return this.http.get<{ data: HistoriaClinica }>(`${environment.apiurl}/veterinaria/historia/clinica/id/` + idHistoriaClinica);
   }
 
   consultaColaboradores() {
-    return this.http.get<{ data: Colaborador[] }>('http://localhost:8886/api/veterinaria/colaborador/');
+    return this.http.get<{ data: Colaborador[] }>(`${environment.apiurl}/veterinaria/colaborador/`);
   }
 
   crearHistoriaCLinica(id: number) {
     const fechaCreacion = new Date();
-    return this.http.post<CreacionHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica', {
-      id: -1,
-      mascota: {
-        id
-      },
-      fechaCreacion: fechaCreacion.toISOString().split('T')[0]
+    return this.http.post<CreacionHistoriaClinica>(`${environment.apiurl}/veterinaria/historia/clinica`, {
+      idMascota: id,
+      fechaCreacion: fechaCreacion.toISOString().split(`T`)[0]
     });
   }
 
-  crearDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {
-    console.log(JSON.stringify(detalleHistoriaClinica));
-    return this.http.post<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaClinica);
+  crearDetalleHistoriaClinica(detalleHistoriaPostClinica: DetalleHistoriaPostClinica) {
+    console.log(JSON.stringify(detalleHistoriaPostClinica));
+    return this.http.post<CreacionDetalleHistoriaClinica>(`${environment.apiurl}/veterinaria/detalle/historia/clinica`, detalleHistoriaPostClinica);
   }
 
-  actualizaDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {
-    console.log(JSON.stringify(detalleHistoriaClinica));
-    return this.http.put<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaClinica);
+  actualizaDetalleHistoriaClinica(detalleHistoriaPostClinica: DetalleHistoriaPostClinica) {
+    console.log(JSON.stringify(detalleHistoriaPostClinica));
+    return this.http.put<CreacionDetalleHistoriaClinica>(`${environment.apiurl}/veterinaria/detalle/historia/clinica`, detalleHistoriaPostClinica);
   }
 
   borrarDetalleHistoriaClinica(idHistoriaClinica: number) {
-    return this.http.delete<BorrarHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica/' + idHistoriaClinica);
+    return this.http.delete<BorrarHistoriaClinica>(`${environment.apiurl}/veterinaria/detalle/historia/clinica/` + idHistoriaClinica);
 
   }
 

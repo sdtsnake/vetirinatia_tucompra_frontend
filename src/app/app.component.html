@@ -1,41 +1,3 @@
-<!--
-<div class="content" role="main">
-  <input type="hidden" #selection>
-
-  <div class="card-container">
-    <button class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-        <span>Historias Clinicas</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'material'" tabindex="0">
-        <span>Historia Clinica</span>
-    </button>
-  </div>
-
-  &lt;!&ndash; Terminal &ndash;&gt;
-  <div [ngSwitch]="selection.value">
-
-      <app-historias-clinicas *ngSwitchDefault></app-historias-clinicas>
-      <app-historia-clinica *ngSwitchCase="'material'"></app-historia-clinica>
-  </div>
-</div>-->
-
-
-<!--
-<h1>Angular Router App</h1>
-<nav>
-  <ul>
-    <li><a routerLink="/" routerLinkActive="active">Historia clinica</a></li>
-    <li><a routerLink="/historia" routerLinkActive="active">Detalle historia clinica</a></li>
-    <li><a routerLink="/detalle" routerLinkActive="active">Captura detalle de la historia clinica</a></li>
-    <li><a routerLink="/consulta" routerLinkActive="active">Consulta detalle de la historia clinica</a></li>
-    <li><a routerLink="/creahistoria" routerLinkActive="active">Crea Historia clinica</a></li>
-    <li><a routerLink="/modificadetalle" routerLinkActive="active">Modifica detalle historia clinica</a></li>
-
-  </ul>
-</nav>
--->
-
 
 <app-menu></app-menu>
 <div class="container">
@@ -49,3 +11,4 @@
         crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+

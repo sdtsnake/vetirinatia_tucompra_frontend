@@ -41,7 +41,8 @@ export class HistoriasClinicasComponent implements OnInit {
       },
       re => {
         this.error = re.error?.error;
-        console.warn(re);
+        alert(this.error);
+        this.cerrarModalBorrado();
       }
     );
   }
@@ -66,5 +67,4 @@ export class HistoriasClinicasComponent implements OnInit {
     // from /view1?page=1 to/view2?page=1
     this.router.navigateByUrl(`/creahistoria=$` + this.idHistoriaClinica);
   }
-
 }
