@@ -142,7 +142,8 @@ export class ModificaDetalleHistoriaClinicaComponent implements OnInit {
       frecuenciaRespiratoria: this.formularioGrabacion.get('frecuenciaRespiratoria').value,
       habitad: this.formularioGrabacion.get('habitad').value,
       historiaClinica: historia,
-      id: -1,
+      // tslint:disable-next-line:radix
+      id: parseInt(this.idDetalleHistoriaClinica),
       observacion: this.formularioGrabacion.get('observacion').value,
       peso: this.formularioGrabacion.get('peso').value,
       temperatura: this.formularioGrabacion.get('temperatura').value
