@@ -64,9 +64,9 @@ export class HistoriaClinicaService {
     return this.http.post<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaPostClinica);
   }
 
-  actualizaDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {
-    console.log(JSON.stringify(detalleHistoriaClinica));
-    return this.http.put<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaClinica);
+  actualizaDetalleHistoriaClinica(detalleHistoriaPostClinica: DetalleHistoriaPostClinica) {
+    console.log(JSON.stringify(detalleHistoriaPostClinica));
+    return this.http.put<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaPostClinica);
   }
 
   borrarDetalleHistoriaClinica(idHistoriaClinica: number) {
