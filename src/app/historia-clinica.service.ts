@@ -4,7 +4,7 @@ import {
   Colaborador,
   CreacionDetalleHistoriaClinica,
   CreacionHistoriaClinica,
-  DetalleHistoriaClinica,
+  DetalleHistoriaClinica, DetalleHistoriaPostClinica,
   HistoriaClinica,
   Mascota
 } from './types/historiaClinica';
@@ -54,17 +54,14 @@ export class HistoriaClinicaService {
   crearHistoriaCLinica(id: number) {
     const fechaCreacion = new Date();
     return this.http.post<CreacionHistoriaClinica>('http://localhost:8886/api/veterinaria/historia/clinica', {
-      id: -1,
-      mascota: {
-        id
-      },
+      idMascota: id,
       fechaCreacion: fechaCreacion.toISOString().split('T')[0]
     });
   }
 
-  crearDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {
-    console.log(JSON.stringify(detalleHistoriaClinica));
-    return this.http.post<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaClinica);
+  crearDetalleHistoriaClinica(detalleHistoriaPostClinica: DetalleHistoriaPostClinica) {
+    console.log(JSON.stringify(detalleHistoriaPostClinica));
+    return this.http.post<CreacionDetalleHistoriaClinica>('http://localhost:8886/api/veterinaria/detalle/historia/clinica', detalleHistoriaPostClinica);
   }
 
   actualizaDetalleHistoriaClinica(detalleHistoriaClinica: DetalleHistoriaClinica) {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HistoriaClinicaService} from '../historia-clinica.service';
-import {Colaborador, DetalleHistoriaClinica, HistoriaClinica, Mascota} from '../types/historiaClinica';
+import {Colaborador, DetalleHistoriaClinica, DetalleHistoriaPostClinica, HistoriaClinica, Mascota} from '../types/historiaClinica';
 import {map} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -72,42 +72,21 @@ export class DetalleHistoriaClinicaComponent implements OnInit {
       return;
     }
 
-    const mascota: Mascota = {
-      id: 0, nombre: '', raza: '', sexo: undefined, usuario: undefined
-
-    };
-
-    const colaborador: Colaborador = {
-      apellido: '',
-      cargo: '',
-      documentoIdentificacion: 0,
-      especialidad: '',
-      id: this.formularioGrabacion.get('colaborador').value,
-      nombre: '',
-      tipoDocumento: ''
-    };
-
-    const historia: HistoriaClinica = {
-      fechaCreacion: '', mascota,
-      // tslint:disable-next-line:radix
-      id: parseInt(this.idHistoriaClinica)
-    };
-
     // tslint:disable-next-line:prefer-const
     let fechaCreacion = new Date();
-    // tslint:disable-next-line:no-unused-expression
-    const detalle: DetalleHistoriaClinica = {
+    // @ts-ignore
+    // @ts-ignore
+    const detalle: DetalleHistoriaPostClinica = {
       alimentacion: this.formularioGrabacion.get('alimentacion').value,
-      colaborador,
       fechaHora: fechaCreacion.toISOString(),
       frecuenciaCardiaca: this.formularioGrabacion.get('frecuenciaCardica').value,
       frecuenciaRespiratoria: this.formularioGrabacion.get('frecuenciaRespiratoria').value,
       habitad: this.formularioGrabacion.get('habitad').value,
-      historiaClinica: historia,
-      id: -1,
       observacion: this.formularioGrabacion.get('observacion').value,
       peso: this.formularioGrabacion.get('peso').value,
-      temperatura: this.formularioGrabacion.get('temperatura').value
+      temperatura: this.formularioGrabacion.get('temperatura').value,
+      idHistoriaClinica: parseInt(this.idHistoriaClinica),
+      idColaborador: this.idColaborador
     };
 
     const respuesta = this.servicio.crearDetalleHistoriaClinica(detalle);
