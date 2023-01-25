@@ -1,17 +1,16 @@
 <h1>Creacion de la historia clinica</h1>
 
-<div>
-  <div>
-    <label for="mascota">Mascota : </label>
-    <select id="mascota" #mascota class="custom-select mb-3" (change)="cambiarMascota(mascota.value)">
+<div class="container align-items-center">
+
+    <h2 class="text-center">Mascota </h2>
+    <select class="form-select align-items-center" aria-label="Default select example" id="mascota" #mascota class="custom-select mb-3" (change)="cambiarMascota(mascota.value)">
       <option value="">Elegir mascota</option>
       <option *ngFor="let mascota of mascotasSinHistoriaClinica | async" [value]="mascota.id">
         {{ mascota.nombre }} - {{mascota.usuario.nombre}}
       </option>
     </select>
-  </div>
-  <button (click)=" crearHistoriaClinica()">Crear Historia</button>
-  <button (click)="cerrarCreacionModal()">Cancelar</button>
+  <button class="btn btn-primary btn-sm" (click)=" crearHistoriaClinica()">Crear Historia</button>
+  <button class="btn btn-secondary btn-sm" (click)="cerrarCreacionModal()">Cancelar</button>
 </div>
 
 <div *ngIf="error">

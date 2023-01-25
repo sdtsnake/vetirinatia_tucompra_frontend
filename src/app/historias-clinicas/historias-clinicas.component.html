@@ -3,7 +3,7 @@
 </div>
 
 <div>
-  <table border="1">
+  <table class="table table-striped">
     <thead>
     <tr>
       <th>
@@ -32,25 +32,27 @@
         {{historiaClinica.fechaCreacion}}
       </td>
       <td>
-        <button>Modificar</button>
-        <button (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
-        <button (click)="aperturaHistoriaClinica(historiaClinica.id)">Detalles</button>
+        <button class="btn btn-primary">Modificar</button>
+        <button class="btn btn-info" (click)="aperturaHistoriaClinica(historiaClinica.id)">Detalles</button>
+        <button class="btn btn-danger" (click)="decideBorrarHistoriaClinica(historiaClinica.id)">Borrar</button>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 
-<div>
-  <button (click)="creaHistoriaClinica()" >Nueva Historia</button>
+<div class="d-grid gap-2">
+  <button class="btn btn-primary" (click)="creaHistoriaClinica()" >Nueva Historia</button>
 </div>
 
-<div *ngIf="abrirModalBorrado">
+<div class="container" *ngIf="abrirModalBorrado">
   <pre>Esta seguro que desea borrar la historia clinica</pre>
-  <button (click)="borrarHitoriaClinica()">Aceptar</button>
-  <button (click)="cerrarModalBorrado()">Cancelar</button>
+  <button class="btn btn-danger" (click)="borrarHitoriaClinica()">Aceptar</button>
+  <button class="btn btn-light" (click)="cerrarModalBorrado()">Cancelar</button>
 </div>
 
 <div *ngIf="error">
   <pre>{{error}}</pre>
 </div>
+
+<app-pie-pagina></app-pie-pagina>

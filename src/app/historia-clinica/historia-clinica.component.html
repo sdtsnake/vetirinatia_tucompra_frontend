@@ -2,9 +2,6 @@
   <h1>Registros Historia clinica</h1><b>Fecha de apertura : </b>
   <time>2021-01-01</time>
 </div>
-<h1>
-  {{idHistoriaClinica}}
-</h1>
 <div *ngIf="historiaClinica">
   <div>
     <span>
@@ -18,14 +15,14 @@
   </div>
 
   <div>
-    <h4>
+    <b>
       Propietario :
-      <span>{{historiaClinica.mascota.usuario.nombre}}  {{historiaClinica.mascota.usuario.apellido}}</span>
-    </h4>
+    </b>
+    <span>{{historiaClinica.mascota.usuario.nombre}}  {{historiaClinica.mascota.usuario.apellido}}</span>
   </div>
 
   <div>
-    <table border="1">
+    <table class="table table-striped">
       <thead>
       <tr>
         <th>
@@ -61,9 +58,10 @@
             {{detalle.colaborador.especialidad}}
           </td>
           <td>
-            <button (click)="muestraDetalle(detalle.id)">{{indices.get(detalle.id)==true?'Ocultar':'Ver'}}</button>
-            <button (click)="modificaDetalle(detalle.id)">Modificar</button>
-            <button (click)="borraDetalle(detalle.id)">Borrar</button>
+            <button class="btn btn-primary"
+                    (click)="muestraDetalle(detalle.id)">{{indices.get(detalle.id) == true ? 'Ocultar' : 'Ver'}}</button>
+            <button class="btn btn-info" (click)="modificaDetalle(detalle.id)">Modificar</button>
+            <button class="btn btn-danger" (click)="borraDetalle(detalle.id)">Borrar</button>
           </td>
         </tr>
         <tr *ngIf="indices.get(detalle.id)">
@@ -74,8 +72,8 @@
       </ng-container>
       </tbody>
     </table>
-    <button (click)="grabaDetalle()">Crear Registro</button>
-    <button (click)="regresarHistora()">Salir</button>
+    <button class="btn btn-primary me-md-2" (click)="grabaDetalle()">Crear Registro</button>
+    <button class="btn btn-primary" (click)="regresarHistora()">Salir</button>
   </div>
 </div>
 <div *ngIf="error">
