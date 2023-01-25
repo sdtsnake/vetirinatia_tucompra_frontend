@@ -3,7 +3,7 @@ import {map} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HistoriaClinicaService} from '../historia-clinica.service';
-import {Colaborador, DetalleHistoriaClinica, DetalleHistoriaPostClinica, HistoriaClinica, Mascota} from '../types/historiaClinica';
+import {DetalleHistoriaClinica, DetalleHistoriaPostClinica} from '../types/historiaClinica';
 
 @Component({
   selector: 'app-modifica-detalle-historia-clinica',
@@ -57,6 +57,7 @@ export class ModificaDetalleHistoriaClinicaComponent implements OnInit {
     this.formularioGrabacion.setValue({
       temperatura: this.detalleHistoriasClinicas.temperatura,
       peso: this.detalleHistoriasClinicas.peso,
+      fechaHora: this.detalleHistoriasClinicas.fechaHora,
       frecuenciaCardica: this.detalleHistoriasClinicas.frecuenciaCardiaca,
       frecuenciaRespiratoria: this.detalleHistoriasClinicas.frecuenciaRespiratoria,
       alimentacion: this.detalleHistoriasClinicas.alimentacion,
@@ -110,14 +111,10 @@ export class ModificaDetalleHistoriaClinicaComponent implements OnInit {
       return;
     }
 
-
-
-    // tslint:disable-next-line:prefer-const
-    let fechaCreacion = new Date();
     // tslint:disable-next-line:no-unused-expression
     const detalle: DetalleHistoriaPostClinica = {
       alimentacion: this.formularioGrabacion.get('alimentacion').value,
-      fechaHora: fechaCreacion.toISOString(),
+      fechaHora: this.detalleHistoriasClinicas.fechaHora,
       frecuenciaCardiaca: this.formularioGrabacion.get('frecuenciaCardica').value,
       frecuenciaRespiratoria: this.formularioGrabacion.get('frecuenciaRespiratoria').value,
       habitad: this.formularioGrabacion.get('habitad').value,

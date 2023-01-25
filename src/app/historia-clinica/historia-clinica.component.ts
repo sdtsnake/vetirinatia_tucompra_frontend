@@ -57,7 +57,6 @@ export class HistoriaClinicaComponent implements OnInit {
       re => {
         this.error = re.error?.error;
         alert(this.error) + ' buscando';
-        window.location.reload();
       }
     );
   }
@@ -71,7 +70,7 @@ export class HistoriaClinicaComponent implements OnInit {
       re => {
         this.error = re.error?.error;
         alert(this.error + ' actualizando');
-        //window.location.reload();
+        this.detalleHistoriasClinicas = [];
       }
     );
   }
@@ -108,6 +107,7 @@ export class HistoriaClinicaComponent implements OnInit {
       re => {
         this.error = re.error?.error;
         alert(this.error + ' borrando');
+        this.cerrarModalBorrado();
       }
     );
   }
@@ -120,7 +120,7 @@ export class HistoriaClinicaComponent implements OnInit {
     this.abrirModalBorrado = false;
     this.idDetalleHistoriaClinica = null;
     this.error = null;
-    window.location.reload();
+
   }
 
 

@@ -42,7 +42,7 @@ export class HistoriasClinicasComponent implements OnInit {
       re => {
         this.error = re.error?.error;
         alert(this.error);
-        window.location.reload();
+        this.cerrarModalBorrado();
       }
     );
   }
