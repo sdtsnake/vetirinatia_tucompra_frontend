@@ -57,7 +57,6 @@ export class ModificaDetalleHistoriaClinicaComponent implements OnInit {
     this.formularioGrabacion.setValue({
       temperatura: this.detalleHistoriasClinicas.temperatura,
       peso: this.detalleHistoriasClinicas.peso,
-      fechaHora: this.detalleHistoriasClinicas.fechaHora,
       frecuenciaCardica: this.detalleHistoriasClinicas.frecuenciaCardiaca,
       frecuenciaRespiratoria: this.detalleHistoriasClinicas.frecuenciaRespiratoria,
       alimentacion: this.detalleHistoriasClinicas.alimentacion,
