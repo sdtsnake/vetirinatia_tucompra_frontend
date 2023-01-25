@@ -36,7 +36,8 @@ export class CrearHistoriaClinicaComponent implements OnInit {
       },
       re => {
         this.error = re.error?.error;
-        console.warn(re);
+        alert(this.error);
+        window.location.reload();
       }
     );
   }

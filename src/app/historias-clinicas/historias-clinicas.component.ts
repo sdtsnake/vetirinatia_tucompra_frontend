@@ -42,7 +42,7 @@ export class HistoriasClinicasComponent implements OnInit {
       re => {
         this.error = re.error?.error;
         alert(this.error);
-        this.recargaPagina();
+        window.location.reload();
       }
     );
   }
@@ -67,9 +67,4 @@ export class HistoriasClinicasComponent implements OnInit {
     // from /view1?page=1 to/view2?page=1
     this.router.navigateByUrl(`/creahistoria=$` + this.idHistoriaClinica);
   }
-
-  recargaPagina() {
-    this.router.navigateByUrl(`/**`);
-  }
-
 }

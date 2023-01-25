@@ -1,7 +1,10 @@
+<html>
+<head>
+</head>
+<body>
 <div>
   <h1>Historias Clinicas</h1>
 </div>
-
 <div>
   <table class="table table-striped">
     <thead>
@@ -41,7 +44,7 @@
 </div>
 
 <div class="d-grid gap-2">
-  <button class="btn btn-primary" (click)="creaHistoriaClinica()" >Nueva Historia</button>
+  <button class="btn btn-primary" (click)="creaHistoriaClinica()">Nueva Historia</button>
 </div>
 
 <div class="container" *ngIf="abrirModalBorrado">
@@ -49,5 +52,5 @@
   <button class="btn btn-danger" (click)="borrarHitoriaClinica()">Aceptar</button>
   <button class="btn btn-light" (click)="cerrarModalBorrado()">Cancelar</button>
 </div>
-
-
+</body>
+</html>
